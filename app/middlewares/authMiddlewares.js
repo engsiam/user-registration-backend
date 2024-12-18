@@ -3,28 +3,34 @@ import User from '../models/user.js';
 
 const authenticate = async (req, res, next) => {
     try {
-        // Extract the token from the "Authorization" header or cookies
+        // Extract the token from the Authorization header
         const token =
-            req.cookies.token ||
-            req.headers.authorization?.split(' ')[1];
+            req.cookies.token || req.headers.authorization?.split(' ')[1];
 
         if (!token) {
-            return res.status(401).json({ message: 'Access denied' });
+            return res
+                .status(401)
+                .json({ message: 'Access denied. Please log in first.' });
         }
 
         // Verify the token
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const user = await User.findById(decoded.id).select('-password');
 
-        // Attach user data to the request
-        req.user = await User.findById(decoded.id).select('-password');
-        if (!req.user) {
-            return res.status(404).json({ message: 'User not found' });
+        // Check if user still exists
+        if (!user) {
+            return res
+                .status(401)
+                .json({ message: 'Invalid token. User no longer exists.' });
         }
 
-        next(); // Pass control to the next middleware
-    } catch (err) {
-        console.error('Auth Middleware Error:', err.message);
-        res.status(401).json({ message: 'Invalid or expired token' });
+        req.user = user; // Attach user data to the request
+        next();
+    } catch (error) {
+        console.error('Authentication error:', error.message);
+        res
+            .status(401)
+            .json({ message: 'Please use a valid login token or log in again.' });
     }
 };
 

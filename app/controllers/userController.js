@@ -85,9 +85,18 @@ export const getAllUsers = async (req, res) => {
 export const updateUserProfile = async (req, res) => {
     try{
         const updates = req.body;
-        const user = await User.findByIdAndUpdate(req.user._id,{new:true}).select('-password');
-        res.json({message:'Updated successfully',user});
+        const userId = req.params.id;
+        // Find the user by ID and apply the updates
+        const updatedUser  = await User.findByIdAndUpdate(
+            userId,
+            {$set:updates},
+            { new: true,runValidators: true }
+        ).select('-password');
 
+    if(!updatedUser ){
+        return res.status(404).json({ message: 'User not found' });
+    }
+    res.json({message: 'User updated successfully', user:updatedUser });
     }
     catch(error){
         res.status(400).json({error:error.message})
@@ -97,7 +106,7 @@ export const updateUserProfile = async (req, res) => {
 //Delete User
 export const deleteUser = async (req, res) => {
     try{
-        const user = await User.findByIdAndDelete(req.user._id);
+        const user = await User.findByIdAndDelete(req.user._id).select('-password');
         res.json({message:'Deleted successfully',user});
     }
     catch(error){
