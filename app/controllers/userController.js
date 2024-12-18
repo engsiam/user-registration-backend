@@ -54,7 +54,21 @@ export const loginUser = async (req, res) => {
 
 // Get Single User Profile
 export const getUserProfile = async (req, res) => {
-    res.json(req.user);
+   try{
+       // Extract user ID from the route parameter
+       const userId = req.params.id;
+       // Fetch user from the database (excluding the password)
+       const user = await User.findById(userId).select('-password');
+       if (!user) {
+           return res.status(401).json({ message: 'User not found' });
+       }
+       // Return the user's profile
+       res.status(200).json({message: 'Single User Profile', user});
+   }
+    catch (error) {
+        console.error('Error fetching user profile:', error.message);
+        res.status(500).json({ error: 'Server error' });
+    }
 }
 
 // Get All Users
