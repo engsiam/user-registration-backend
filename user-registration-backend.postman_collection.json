@@ -1,0 +1,288 @@
+{
+	"info": {
+		"_postman_id": "a1863170-67fe-4abc-8da8-1f7d7b066f38",
+		"name": "user-registration-backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19239340"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstName\": \"razzak\",\r\n  \"lastName\": \"ahmed\",\r\n  \"NIDNumber\": \"nid069\",\r\n  \"phoneNumber\": \"01742080480\",\r\n  \"password\": \"siam1234\",\r\n  \"bloodGroup\": \"AB+\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/users/register",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllUsers",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NjJhZGJiYTg0MjNkN2UzMDFjNzMwOCIsImlhdCI6MTczNDUyMDI3NSwiZXhwIjoxNzM0NjA2Njc1fQ.B994d7ny9aiZPRtal_Cu-IFyb18FaX2vCUQKEY3xRI4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/api/users/getAllUsers",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"getAllUsers"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SingleProfile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NjJhZGJiYTg0MjNkN2UzMDFjNzMwOCIsImlhdCI6MTczNDUyMDI3NSwiZXhwIjoxNzM0NjA2Njc1fQ.B994d7ny9aiZPRtal_Cu-IFyb18FaX2vCUQKEY3xRI4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/api/users/profile/6762adbba8423d7e301c7308",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"profile",
+						"6762adbba8423d7e301c7308"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "singleUserUpdate",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NjJhZGJiYTg0MjNkN2UzMDFjNzMwOCIsImlhdCI6MTczNDUyMDI3NSwiZXhwIjoxNzM0NjA2Njc1fQ.B994d7ny9aiZPRtal_Cu-IFyb18FaX2vCUQKEY3xRI4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstName\": \"sahin srk\",\r\n  \"lastName\": \"engineer\",\r\n  \"phoneNumber\": \"9876543210\",\r\n  \"bloodGroup\":\"B+\"\r\n  \r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/users/profile/6762920261d99e612dc9a92e",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"profile",
+						"6762920261d99e612dc9a92e"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NjI4ZTc3ZjJkZjQxMjMzNGNjN2M2ZCIsImlhdCI6MTczNDUxMjM0MiwiZXhwIjoxNzM0NTk4NzQyfQ.yB1WHkD9XC-4vk72SSx_OEBRM5Mtb2oRFnKDxALHNfk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/api/users/delete/6762abed29f1a991d0c3936f",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"delete",
+						"6762abed29f1a991d0c3936f"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"NIDNumber\": \"nid078\",\r\n  \"password\": \"siam1234\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/users/login",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost:5000",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NjJhM2VkZjMzYTc3MTE5ODMyOTdiMCIsImlhdCI6MTczNDUxOTkxMiwiZXhwIjoxNzM0NjA2MzEyfQ.q4MfqayUYnBSy6FGg0i6zqrGC_L7lwTHCHErbQe9INw",
+			"type": "string"
+		}
+	]
+}
